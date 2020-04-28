@@ -16,6 +16,11 @@ resource "google_container_cluster" "kubernetes_cluster" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
+  depends_on=[google_compute_network.vpc_network]
+}
+
+resource "google_compute_network" "vpc_network" {
+  name = "vpc-network"
 }
 
 variable "project_name" {
