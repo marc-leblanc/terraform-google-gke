@@ -20,7 +20,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name = "vpc-network"
+  name = "default"
 }
 
 variable "project_name" {
