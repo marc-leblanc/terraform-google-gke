@@ -18,7 +18,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
   }
 }
 
-variable "project" {
+variable "project_name" {
   description = "project to deploy kubernetes cluster into"
 }
 
