@@ -1,3 +1,7 @@
+# Vars:
+##    cluster_name | 
+##    project_name | 
+##    location  | 
 resource "google_container_cluster" "kubernetes_cluster" {
   name     = var.cluster_name
   project  = var.project_name
