@@ -22,10 +22,10 @@ resource "google_container_cluster" "kubernetes_cluster" {
   }
   depends_on=[google_compute_network.vpc_network]
 }
-
-resource "google_compute_network" "vpc_network" {
-  name = "default"
-}
+# This next section only needed if the network -does not- already exist
+#resource "google_compute_network" "vpc_network" {
+#  name = "default"
+#}
 
 variable "project_name" {
   description = "project to deploy kubernetes cluster into"
