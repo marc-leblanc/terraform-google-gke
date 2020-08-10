@@ -20,6 +20,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
+  # depends_on = [google_compute_network.vpc_network] #Uncomment if creating google_compute_network.vpc_network below
 }
 # This next section only needed if the network -does not- already exist
 #resource "google_compute_network" "vpc_network" {
