@@ -20,7 +20,6 @@ resource "google_container_cluster" "kubernetes_cluster" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
-  depends_on=[google_compute_network.vpc_network]
 }
 # This next section only needed if the network -does not- already exist
 #resource "google_compute_network" "vpc_network" {
@@ -55,4 +54,3 @@ variable "machine_type" {
   description = "size of the compute resources"
   default     = "n1-standard-1"
 }
-
