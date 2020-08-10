@@ -1,4 +1,6 @@
-# GKE Demo
+![pre-commit](https://github.com/marc-leblanc/terraform-google-gke/workflows/pre-commit/badge.svg)
+
+# Simple GKE Deployment
 
 This GKE demo can be used as a module, to demonstrate a simple GKE build in GCP, or to showcase Terraform fetching dynamic Service Account keys from Vault for a Terraform provider
 
