@@ -55,3 +55,20 @@ variable "machine_type" {
   description = "size of the compute resources"
   default     = "n1-standard-1"
 }
+
+data "google_client_config" "default" {
+}
+
+output "gke_endpoint" {
+  value = google_container_cluster.kubernetes_cluster.endpoint
+}
+
+output "gke_access_token" {
+  value = data.google_client_config.default.access_token
+}
+
+output "gke_cluster_ca_cert" {
+  value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
+
+
+}
