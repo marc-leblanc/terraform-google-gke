@@ -11,6 +11,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
   network            = var.network
 
   node_config {
+    preemptible  = var.preemptible
     machine_type = var.machine_type
 
     oauth_scopes = [
@@ -56,19 +57,22 @@ variable "machine_type" {
   default     = "n1-standard-1"
 }
 
+variable "preemptible" {
+  description = "Pre-emptible nodes True/False"
+  default     = true
+}
+
 data "google_client_config" "default" {
 }
 
-output "gke_endpoint" {
-  value = google_container_cluster.kubernetes_cluster.endpoint
-}
+#output "gke_endpoint" {
+#  value = google_container_cluster.kubernetes_cluster.endpoint
+#}
 
-output "gke_access_token" {
-  value = data.google_client_config.default.access_token
-}
+#output "gke_access_token" {
+#  value = data.google_client_config.default.access_token
+#}
 
-output "gke_cluster_ca_cert" {
-  value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
-
-
-}
+#output "gke_cluster_ca_cert" {
+#  value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
+#}
