@@ -9,6 +9,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
 
   initial_node_count = var.initial_node_count
   network            = var.network
+  subnetwork         = var.subnetwork
 
   node_config {
     preemptible  = var.preemptible
@@ -50,6 +51,10 @@ variable "initial_node_count" {
 variable "network" {
   description = "network that the compute resources of the kubernetes cluster are in"
   default     = "default"
+}
+
+variable "subnetwork" {
+  default = "default"
 }
 
 variable "machine_type" {
