@@ -24,10 +24,6 @@ resource "google_container_cluster" "kubernetes_cluster" {
   }
   # depends_on = [google_compute_network.vpc_network] #Uncomment if creating google_compute_network.vpc_network below
 }
-# This next section only needed if the network -does not- already exist
-#resource "google_compute_network" "vpc_network" {
-#  name = "default"
-#}
 
 variable "project_name" {
   description = "project to deploy kubernetes cluster into"
@@ -70,14 +66,13 @@ variable "preemptible" {
 data "google_client_config" "default" {
 }
 
-#output "gke_endpoint" {
-#  value = google_container_cluster.kubernetes_cluster.endpoint
-#}
+output "gke_endpoint" {
+  value = google_container_cluster.kubernetes_cluster.endpoint
+}
 
-#output "gke_access_token" {
-#  value = data.google_client_config.default.access_token
-#}
-
-#output "gke_cluster_ca_cert" {
-#  value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
-#}
+output "gke_access_token" {
+  value = data.google_client_config.default.access_token
+}
+output "gke_cluster_ca_cert" {
+  value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
+}
