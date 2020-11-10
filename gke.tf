@@ -10,7 +10,7 @@ data "google_compute_default_service_account" "default" {
 
 # Set K8S Node Service Account - either default or user provided
 variable "service_account" { 
-  default = data.google_compute_default_service_account.default.email
+  default = ""
   description = "The GCP Service Account to be used by the node VMs"
 }
 
@@ -22,7 +22,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
   initial_node_count = var.initial_node_count
   network            = var.network
   subnetwork         = var.subnetwork
-  service_account    = var.service_account
+  service_account    = var.service_account != "" ? var.service_account : data.google_compute_default_service_account.default.email
   node_config {
     preemptible  = var.preemptible
     machine_type = var.machine_type
