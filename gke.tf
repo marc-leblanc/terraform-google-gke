@@ -32,6 +32,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/cloudkms"
     ]
   }
   # depends_on = [google_compute_network.vpc_network] #Uncomment if creating google_compute_network.vpc_network below
@@ -87,4 +88,8 @@ output "gke_access_token" {
 }
 output "gke_cluster_ca_cert" {
   value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
+}
+
+output "gke_connection_string" { 
+  value = "gcloud container clusters get-credentials ${var.cluster_name} --zone ${var.location} --project ${var.project_id}"
 }
