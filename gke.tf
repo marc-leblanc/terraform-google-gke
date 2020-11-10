@@ -22,11 +22,11 @@ resource "google_container_cluster" "kubernetes_cluster" {
   initial_node_count = var.initial_node_count
   network            = var.network
   subnetwork         = var.subnetwork
-  service_account    = var.service_account != "" ? var.service_account : data.google_compute_default_service_account.default.email
-  node_config {
-    preemptible  = var.preemptible
-    machine_type = var.machine_type
 
+  node_config {
+    preemptible     = var.preemptible
+    machine_type    = var.machine_type
+    service_account = (var.service_account != "" ? var.service_account : data.google_compute_default_service_account.default.email)
     oauth_scopes = [
       "https://www.googleapis.com/auth/compute",
       "https://www.googleapis.com/auth/devstorage.read_only",
