@@ -5,7 +5,7 @@
 
 # Vault Required IAM
 data "google_compute_default_service_account" "default" {
-  project = local.project_id
+  project = var.project_id
 }
 
 # Set K8S Node Service Account - either default or user provided
