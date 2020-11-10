@@ -16,7 +16,7 @@ variable "service_account" {
 
 resource "google_container_cluster" "kubernetes_cluster" {
   name     = var.cluster_name
-  project  = var.project_name
+  project  = var.project_id
   location = var.location
 
   initial_node_count = var.initial_node_count
@@ -37,8 +37,8 @@ resource "google_container_cluster" "kubernetes_cluster" {
   # depends_on = [google_compute_network.vpc_network] #Uncomment if creating google_compute_network.vpc_network below
 }
 
-variable "project_name" {
-  description = "project to deploy kubernetes cluster into"
+variable "project_id" {
+  description = "GCP Project ID for GKE deployment"
 }
 
 
