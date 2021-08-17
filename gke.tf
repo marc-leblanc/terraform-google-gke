@@ -1,8 +1,3 @@
-# Vars:
-##    cluster_name | 
-##    project_name | 
-##    location  | 
-
 # Vault Required IAM
 data "google_compute_default_service_account" "default" {
   project = var.project_id
