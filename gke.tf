@@ -88,6 +88,6 @@ output "gke_cluster_ca_cert" {
 output "gke_connection_string" {
   value = "gcloud container clusters get-credentials ${var.cluster_name} --zone ${var.location} --project ${var.project_id}"
   depends_on = [
-    google_container_cluster.kubernetes_cluster.endpoint
+    google_container_cluster.kubernetes_cluster
   ]
 }
