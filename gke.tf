@@ -76,11 +76,11 @@ variable "cert_manager_install" {
   default     = false
 }
 resource "helm_release" "cert-manager" {
-  count      = var.cert_manager_install ? 1 : 0
-  name       = "cert-manager"
-  namespace  = "cert-manager"
-  repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
+  count            = var.cert_manager_install ? 1 : 0
+  name             = "cert-manager"
+  namespace        = "cert-manager"
+  repository       = "https://charts.jetstack.io"
+  chart            = "cert-manager"
   create_namespace = true
 }
 
