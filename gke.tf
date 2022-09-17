@@ -71,16 +71,23 @@ variable "preemptible" {
   default     = true
 }
 
-data "google_client_config" "default" {
+variable "cert_manager_install" {
+  description = "Install cert-manager"
+  default     = false
 }
+resource "helm_release" "cert-manager" {
+  count = var.cert_manager_install ? 1 : 0
+  name  = "cert-manager"
+
+  repository = "https://charts.jetstack.io"
+  chart      = "jetstack/cert-manager"
+}
+
 
 output "gke_endpoint" {
   value = google_container_cluster.kubernetes_cluster.endpoint
 }
 
-#output "gke_access_token" {
-#  value = data.google_client_config.default.access_token
-#}
 output "gke_cluster_ca_cert" {
   value = google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate
 }
@@ -90,4 +97,12 @@ output "gke_connection_string" {
   depends_on = [
     google_container_cluster.kubernetes_cluster
   ]
+}
+data "google_client_config" "default" {}
+provider "helm" {
+  kubernetes {
+    host                   = google_container_cluster.kubernetes_cluster.endpoint
+    cluster_ca_certificate = base64decode(google_container_cluster.kubernetes_cluster.master_auth.0.cluster_ca_certificate)
+    token                  = data.google_client_config.default.access_token
+  }
 }
