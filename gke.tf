@@ -18,7 +18,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
   network            = var.network
   subnetwork         = var.subnetwork
   networking_mode    = "VPC_NATIVE"
-  ip_allocation_policy{}
+  ip_allocation_policy {}
 
   node_config {
     preemptible     = var.preemptible
@@ -27,7 +27,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/compute",
       "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write", 
+      "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
       "https://www.googleapis.com/auth/cloudkms"
     ]
