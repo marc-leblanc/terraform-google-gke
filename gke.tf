@@ -17,6 +17,8 @@ resource "google_container_cluster" "kubernetes_cluster" {
   initial_node_count = var.initial_node_count
   network            = var.network
   subnetwork         = var.subnetwork
+  networking_mode    = "VPC_NATIVE"
+  ip_allocation_policy {}
 
   node_config {
     preemptible     = var.preemptible
@@ -32,6 +34,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
   }
   # depends_on = [google_compute_network.vpc_network] #Uncomment if creating google_compute_network.vpc_network below
 }
+
 
 variable "project_id" {
   description = "GCP Project ID for GKE deployment"
